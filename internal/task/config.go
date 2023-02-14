@@ -56,8 +56,8 @@ func (d *Docker) Run() DockerResult {
 	defer cli.Close()
 
 	authConfig := types.AuthConfig{
-		Username: "hergytchuinkou",
-		Auth:     "dckr_pat_P9bwidnItqV2zXcS0BzAOsRFSTA",
+		Username: "*******",
+		Auth:     "*******",
 	}
 
 	encodedJSON, err := json.Marshal(authConfig)
