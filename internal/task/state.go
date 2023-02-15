@@ -1,11 +1,11 @@
 package task
 
 type State struct {
-	slug string
+	Slug string
 }
 
 func (s State) string() string {
-	return s.slug
+	return s.Slug
 }
 
 var (

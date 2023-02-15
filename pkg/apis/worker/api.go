@@ -26,7 +26,7 @@ func (api *Api) StartTaskHandler(w http.ResponseWriter, r *http.Request) {
 	err := payload.Decode(&event)
 	if err != nil {
 		msg := fmt.Sprintf("Error unmarshalling paylod : %v\n", err)
-		log.Printf("payload object : %v\n", event)
+		log.Printf("payload object : %v\n", &event)
 		log.Printf("Message : %v\n", msg)
 		w.WriteHeader(400)
 		// send response back to the CLI
@@ -40,6 +40,7 @@ func (api *Api) StartTaskHandler(w http.ResponseWriter, r *http.Request) {
 	// added task to the worker-queue
 	api.Worker.AddTask(event.Task)
 	log.Printf("Added task %v\n", event.Task.ID)
+	log.Printf("Task listed %v\n", api.Worker.Queue.Peek())
 	w.WriteHeader(201)
 	json.NewEncoder(w).Encode(event.Task)
 }

@@ -26,15 +26,15 @@ type Task struct {
 
 func (t *Task) GetState(state string) (State, error) {
 	switch state {
-	case Completed.slug:
+	case Completed.Slug:
 		return Completed, nil
-	case Scheduled.slug:
+	case Scheduled.Slug:
 		return Scheduled, nil
-	case Running.slug:
+	case Running.Slug:
 		return Running, nil
-	case Failed.slug:
+	case Failed.Slug:
 		return Failed, nil
-	case Pending.slug:
+	case Pending.Slug:
 		return Pending, nil
 	}
 	return Unknown, errors.New("Unknown Type: " + state)

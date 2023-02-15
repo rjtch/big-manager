@@ -97,7 +97,7 @@ func (w *Worker) AddTask(t task.Task) {
 func (w *Worker) GetTask() []task.Task {
 	var allTasks []task.Task
 	for w.Queue.Len() > 0 {
-		allTasks = append(allTasks, w.Queue.Dequeue().(task.Task))
+		allTasks = append(allTasks, w.Queue.Peek().(task.Task))
 		log.Printf("All tasks %v\n ", allTasks)
 	}
 	return allTasks

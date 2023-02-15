@@ -1,6 +1,6 @@
 module github.com/rjtch/big-manager
 
-go 1.19
+go 1.18
 
 require (
 	github.com/docker/docker v23.0.0+incompatible
