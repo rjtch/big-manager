@@ -83,13 +83,11 @@ func (api *Api) initRouter() {
 	api.Router = chi.NewRouter()
 	api.Router.Route("/tasks", func(r chi.Router) {
 		r.Post("/", api.StartTaskHandler)
-		r.Get("/", api.GetTaskHandler)
-		r.Route("/{taskID}", func(r chi.Router) {
-			r.Delete("/", api.StopTaskHandler)
-		})
-		r.Route("/stats", func(r chi.Router) {
-			r.Get("/", api.GetStatsHandler)
-		})
+		r.Get("/{taskID}", api.GetTaskHandler)
+		r.Delete("/{taskID}", api.StopTaskHandler)
+	})
+	api.Router.Route("/stats", func(r chi.Router) {
+		r.Get("/", api.GetStatsHandler)
 	})
 }
 

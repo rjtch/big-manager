@@ -14,7 +14,7 @@ import (
 )
 
 type Worker struct {
-	Queue     queue.Queue
+	Queue     *queue.Queue
 	Db        map[uuid.UUID]*task.Task
 	TaskCount int
 	Name      string
@@ -97,6 +97,9 @@ func (w *Worker) StopTask(task task.Task, client *client.Client) task.DockerResu
 }
 
 func (w *Worker) AddTask(t task.Task) {
+	if w.Queue.Len() <= 0 {
+
+	}
 	w.Queue.Enqueue(t)
 }
 

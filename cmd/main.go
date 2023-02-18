@@ -27,7 +27,7 @@ func main() {
 
 	fmt.Println("Starting Big manager worker")
 	w := worker.Worker{
-		Queue: *queue.New(),
+		Queue: queue.New(),
 		Db:    make(map[uuid.UUID]*task.Task),
 	}
 	api := workers.Api{Address: host, Port: port, Worker: &w}
