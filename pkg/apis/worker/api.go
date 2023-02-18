@@ -45,6 +45,12 @@ func (api *Api) StartTaskHandler(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(event.Task)
 }
 
+func (api *Api) GetStatsHandler(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(200)
+	json.NewEncoder(w).Encode(api.Worker.Stats)
+}
+
 func (api *Api) GetTaskHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
@@ -80,6 +86,9 @@ func (api *Api) initRouter() {
 		r.Get("/", api.GetTaskHandler)
 		r.Route("/{taskID}", func(r chi.Router) {
 			r.Delete("/", api.StopTaskHandler)
+		})
+		r.Route("/stats", func(r chi.Router) {
+			r.Get("/", api.GetStatsHandler)
 		})
 	})
 }

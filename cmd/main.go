@@ -33,6 +33,7 @@ func main() {
 	api := workers.Api{Address: host, Port: port, Worker: &w}
 
 	go runTasks(&w, cli)
+	go w.CollectStats()
 	api.Start()
 }
 

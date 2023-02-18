@@ -3,6 +3,7 @@ package worker
 import (
 	"errors"
 	"fmt"
+	"github.com/rjtch/big-manager/pkg/apis/metrics/linux"
 	"log"
 	"time"
 
@@ -17,10 +18,15 @@ type Worker struct {
 	Db        map[uuid.UUID]*task.Task
 	TaskCount int
 	Name      string
+	Stats     *linux.Stats
 }
 
 func (w *Worker) CollectStats() {
-	fmt.Println("I will collect stats")
+	for {
+		fmt.Println("I will collect stats")
+		w.Stats = linux.GetStats()
+		time.Sleep(30)
+	}
 }
 
 func (w *Worker) RunTask(client *client.Client) task.DockerResult {
